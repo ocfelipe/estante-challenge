@@ -12,6 +12,7 @@ Vue.use(VueRouter)
 const router = new VueRouter({
   mode: 'history',
   base: '/estante-challenge/',
+  //base: __dirname,
   routes: [
     {path: '/', component: App},
     {path: '/cadastro', component: Cadastro}

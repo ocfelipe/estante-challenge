@@ -83,8 +83,8 @@
         registrar: function registrar() {
           // processar dados
           this.enderecos.push(this.endereco);
+          localStorage.setItem('enderecos', JSON.stringify(this.enderecos));
           this.$router.push({path: '/'});
-          //localStorage.setItem('enderecos', JSON.stringify(this.enderecos));
 
 
           //localStorage.setItem( 'enderecos', JSON.stringify(this.enderecos) );
@@ -118,15 +118,7 @@
         console.log('App mounted!');
         if (localStorage.getItem('enderecos')) this.enderecos = JSON.parse(localStorage.getItem('enderecos'));
       },
-      watch: {
-        enderecos: {
-          handler() {
-            console.log('Enderecos changed!');
-            localStorage.setItem('enderecos', JSON.stringify(this.enderecos));
-          },
-          deep: true,
-        },
-      },
+
     }
 </script>
 
