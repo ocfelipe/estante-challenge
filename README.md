@@ -1,27 +1,19 @@
-# estante
+# Desafio Estante Virtual
 
-> A Vue.js project
+> Projeto de catálogo de endereços proposto pela [Estante Virtual](https://www.estantevirtual.com.br/).
 
-## Build Setup
+O Desafio proposto consiste em fazer um CRUD de um catálogo de endereços usando o LocalStorage do navegador.
 
-``` bash
-# install dependencies
-npm install
+## Tecnologias Utilizadas
 
-# serve with hot reload at localhost:8080
-npm run dev
+* [Vue.js](https://vuejs.org/)
+* [Vue CLI](https://github.com/vuejs/vue-cli)
+* [Vue Webpack](https://github.com/vuejs-templates/webpack)
+* [Vue Router](https://router.vuejs.org/en/)
+* [Vue The Mask](https://github.com/vuejs-tips/vue-the-mask)
+* [Bootstrap 4](https://getbootstrap.com)
+* [Push-dir](https://www.npmjs.com/package/push-dir)
 
-# build for production with minification
-npm run build
+## Link para a Demo do projeto
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+[https://ocfelipe.github.io/estante-challenge/]
