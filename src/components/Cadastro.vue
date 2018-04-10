@@ -3,6 +3,13 @@
     <div class="row show-grid">
       <form class="col-md-12" v-on:submit="registrar">
         <h1 class="page-header">Cadastro de Endereço</h1>
+        <div v-if="erros.length" class="alert alert-danger" role="alert">
+          <b>Por favor corrija os erros a seguir:</b>
+          <br/><br/>
+          <ul>
+            <li v-for="erro in erros">{{ erro }}</li>
+          </ul>
+        </div>
         <div class="row">
           <div class="col-md-2">
             <div class="form-group">
@@ -76,22 +83,32 @@
           cep: '',
           endereco: {},
           enderecos: [],
-          naoEncontrado: false
+          naoEncontrado: false,
+          erros: []
         }
       },
       methods: {
-        registrar: function registrar() {
+        registrar: function registrar(e) {
           // processar dados
-          this.enderecos.push(this.endereco);
-          localStorage.setItem('enderecos', JSON.stringify(this.enderecos));
-          this.$router.push({path: '/'});
-
-
-          //localStorage.setItem( 'enderecos', JSON.stringify(this.enderecos) );
+          if (this.cep && this.endereco.logradouro && this.endereco.numero && this.endereco.bairro && this.endereco.localidade && this.endereco.uf) {
+            this.enderecos.push(this.endereco);
+            localStorage.setItem('enderecos', JSON.stringify(this.enderecos));
+            console.log('New Address');
+            this.$router.push({path: '/'});
+          } else {
+            this.erros =[];
+            if(!this.cep) this.erros.push("Preencha o CEP.");
+            else if (!(/^[0-9]{5}-[0-9]{3}$/.test(this.cep))) this.erros.push("Preencha o CEP com 8 dígitos. Formato: 00000-000.");
+            if(!this.endereco.logradouro) this.erros.push("Preencha o Logradoudo.");
+            if(!this.endereco.numero) this.erros.push("Preencha o Número.");
+            if(!this.endereco.bairro) this.erros.push("Preencha o Bairro.");
+            if(!this.endereco.localidade) this.erros.push("Preencha a Cidade.");
+            if(!this.endereco.uf) this.erros.push("Preencha o Estado.");
+            e.preventDefault();
+          }
         },
         buscar: function buscar() {
           var self = this;
-
           self.naoLocalizado = false;
 
           if (/^[0-9]{5}-[0-9]{3}$/.test(this.cep)) {
@@ -109,9 +126,6 @@
               $("#inputNumero").focus();
             });
           }
-        },
-        deleteEnd: function (x) {
-          this.enderecos.splice(this.enderecos.indexOf(x), 1);
         }
       },
       mounted() {
